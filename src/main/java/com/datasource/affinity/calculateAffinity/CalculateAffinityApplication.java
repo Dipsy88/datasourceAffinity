@@ -7,17 +7,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+import com.datasource.affinity.calculateAffinity.controller.AffinityController;
 import com.datasource.affinity.calculateAffinity.controller.GeneratorController;
 import com.datasource.affinity.calculateAffinity.extras.GetPropertyValues;
 import com.datasource.affinity.calculateAffinity.runner.Generator;
 
 @SpringBootApplication
+@EnableJpaAuditing
+@EnableAsync
 public class CalculateAffinityApplication {
 	@Autowired
 	GeneratorController generatorController;
 	@Autowired
 	Generator generator;
+	@Autowired
+	AffinityController affinityController;
+
 	private static GetPropertyValues propValues = new GetPropertyValues(); // store config
 
 	public static void main(String[] args) {
@@ -38,7 +46,10 @@ public class CalculateAffinityApplication {
 
 				// initially insert the config values
 				generatorController.setPropValues(propValues);
-				generatorController.run();
+				affinityController.setPropValues(propValues);
+
+//				generatorController.run();	
+				affinityController.run();
 			}
 		};
 	}

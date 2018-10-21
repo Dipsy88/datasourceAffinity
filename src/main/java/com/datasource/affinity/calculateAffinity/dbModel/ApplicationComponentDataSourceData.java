@@ -11,19 +11,33 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "applicationcomponent_datasource_relation")
+@Table(name = "applicationcomponent_datasource_data")
 @EntityListeners(AuditingEntityListener.class)
-public class ApplicationComponent_DataSource_Relation {
+public class ApplicationComponentDataSourceData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	@Column(name = "appcomp_id", nullable = false)
 	private Long appCompId;
-	@Column(name = "ds_id", nullable = false)
+	@Column(name = "datasource_id", nullable = false)
 	private Long dataSourceId;
-	@Column(name = "affinity", nullable = false)
-	private Long affinity;
+	@Column(name = "data_read")
+	private Long dataRead;
+	@Column(name = "data_write")
+	private Long dataWrite;
+
+	public ApplicationComponentDataSourceData(Long appCompId, Long dataSourceId, Long dataRead, Long dataWrite) {
+		super();
+		this.appCompId = appCompId;
+		this.dataSourceId = dataSourceId;
+		this.dataRead = dataRead;
+		this.dataWrite = dataWrite;
+	}
+
+	public ApplicationComponentDataSourceData() {
+
+	}
 
 	public Long getId() {
 		return id;
@@ -49,12 +63,20 @@ public class ApplicationComponent_DataSource_Relation {
 		this.dataSourceId = dataSourceId;
 	}
 
-	public Long getAffinity() {
-		return affinity;
+	public Long getDataRead() {
+		return dataRead;
 	}
 
-	public void setAffinity(Long affinity) {
-		this.affinity = affinity;
+	public void setDataRead(Long dataRead) {
+		this.dataRead = dataRead;
+	}
+
+	public Long getDataWrite() {
+		return dataWrite;
+	}
+
+	public void setDataWrite(Long dataWrite) {
+		this.dataWrite = dataWrite;
 	}
 
 }

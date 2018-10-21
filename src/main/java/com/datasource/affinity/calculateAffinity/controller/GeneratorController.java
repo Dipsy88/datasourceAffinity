@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.Async;
 
 import com.datasource.affinity.calculateAffinity.extras.GetPropertyValues;
-import com.datasource.affinity.calculateAffinity.repository.ApplicationComponent_DataSource_DataRepository;
+import com.datasource.affinity.calculateAffinity.repository.ApplicationComponentDataSourceDataRepository;
 import com.datasource.affinity.calculateAffinity.runner.Generator;
 
 //to enable the autowire functionality
@@ -18,7 +18,7 @@ public class GeneratorController {
 	@Autowired
 	Generator generator;
 	@Autowired
-	ApplicationComponent_DataSource_DataRepository acDSDataRepository;
+	ApplicationComponentDataSourceDataRepository acDSDataRepository;
 
 	private GetPropertyValues propValues = new GetPropertyValues(); // store config
 
