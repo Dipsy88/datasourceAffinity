@@ -19,6 +19,11 @@ public interface ApplicationComponentDataSourceDataRepository
 			Long dataSourceId, Pageable pageable);
 
 	@Query(value = "select *  from " + databaseName
+			+ " where appcomp_id = :acId and datasource_id = :dsId and (data_read > 0 or data_write > 0) ORDER BY id desc LIMIT :maxRecords", nativeQuery = true)
+	List<ApplicationComponentDataSourceData> findByAppCompIdAndDataSourceIdDataHigherZero(@Param("acId") Long acId,
+			@Param("dsId") Long dsId, @Param("maxRecords") int maxRecords);
+
+	@Query(value = "select *  from " + databaseName
 			+ " where appcomp_id = :acId and datasource_id = :dsId and data_read > 0 ORDER BY id desc LIMIT :maxRecords", nativeQuery = true)
 	List<ApplicationComponentDataSourceData> findByAppCompIdAndDataSourceIdDataReadHigherZero(@Param("acId") Long acId,
 			@Param("dsId") Long dsId, @Param("maxRecords") int maxRecords);

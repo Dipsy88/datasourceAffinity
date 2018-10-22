@@ -1,5 +1,7 @@
 package com.datasource.affinity.calculateAffinity.dbModel;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -26,13 +30,19 @@ public class ApplicationComponentDataSourceData {
 	private Long dataRead;
 	@Column(name = "data_write")
 	private Long dataWrite;
+	@Column(name = "timestamp", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+//	@CreatedDate
+	private Date timestamp;
 
-	public ApplicationComponentDataSourceData(Long appCompId, Long dataSourceId, Long dataRead, Long dataWrite) {
+	public ApplicationComponentDataSourceData(Long appCompId, Long dataSourceId, Long dataRead, Long dataWrite,
+			Date timestamp) {
 		super();
 		this.appCompId = appCompId;
 		this.dataSourceId = dataSourceId;
 		this.dataRead = dataRead;
 		this.dataWrite = dataWrite;
+		this.timestamp = timestamp;
 	}
 
 	public ApplicationComponentDataSourceData() {
@@ -79,4 +89,11 @@ public class ApplicationComponentDataSourceData {
 		this.dataWrite = dataWrite;
 	}
 
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 }

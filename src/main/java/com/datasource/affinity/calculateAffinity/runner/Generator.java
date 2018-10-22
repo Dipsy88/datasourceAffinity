@@ -1,5 +1,6 @@
 package com.datasource.affinity.calculateAffinity.runner;
 
+import java.sql.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ public class Generator {
 
 		long amountRead = calculateVal(propValues.getWorstDataRead(), propValues.getBestDataRead());
 		long amountWrite = calculateVal(propValues.getWorstDataWrite(), propValues.getBestDataWrite());
+		Date time = new Date(System.currentTimeMillis());
 
 		ApplicationComponentDataSourceData data = new ApplicationComponentDataSourceData(numAC, numDS, amountRead,
-				amountWrite);
+				amountWrite, time);
 		applicationComponent_DataSource_DataRepository.save(data);
 	}
 

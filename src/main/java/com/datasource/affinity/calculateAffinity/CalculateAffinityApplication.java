@@ -48,7 +48,7 @@ public class CalculateAffinityApplication {
 				generatorController.setPropValues(propValues);
 				affinityController.setPropValues(propValues);
 
-//				generatorController.run();	
+//				generatorController.run();
 				affinityController.run();
 			}
 		};
