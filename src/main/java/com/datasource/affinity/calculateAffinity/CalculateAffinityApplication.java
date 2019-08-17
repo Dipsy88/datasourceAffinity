@@ -20,11 +20,11 @@ import com.datasource.affinity.calculateAffinity.runner.Generator;
 @EnableAsync
 public class CalculateAffinityApplication {
 	@Autowired
-	GeneratorController generatorController;
+	private GeneratorController generatorController;
 	@Autowired
 	Generator generator;
 	@Autowired
-	AffinityController affinityController;
+	private AffinityController affinityController;
 
 	private static GetPropertyValues propValues = new GetPropertyValues(); // store config
 
@@ -41,7 +41,7 @@ public class CalculateAffinityApplication {
 	@Bean
 	public CommandLineRunner schedulingRunner(TaskExecutor executor) {
 		return new CommandLineRunner() {
-			public void run(String... args) throws Exception {
+			public void run(String... args) {
 				simulateDataDatabase();
 
 				// initially insert the config values
@@ -54,8 +54,10 @@ public class CalculateAffinityApplication {
 		};
 	}
 
+
+
 	// read the config properties
-	public static void simulateDataDatabase() {
+	private static void simulateDataDatabase() {
 		propValues.readValues();
 	}
 }

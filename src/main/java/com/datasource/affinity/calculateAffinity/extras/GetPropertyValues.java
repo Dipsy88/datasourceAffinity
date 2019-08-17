@@ -1,11 +1,16 @@
 package com.datasource.affinity.calculateAffinity.extras;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
 // Class to read the properties from the properties file
 
+@Getter
+@Setter
 public class GetPropertyValues {
 	private int recordsConsider = 0; // number of instances to consider from the database
 	private long bestDataRead = 0;
@@ -44,78 +49,6 @@ public class GetPropertyValues {
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
 		}
-	}
-
-	public int getRecordsConsider() {
-		return recordsConsider;
-	}
-
-	public void setRecordsConsider(int recordsConsider) {
-		this.recordsConsider = recordsConsider;
-	}
-
-	public long getBestDataRead() {
-		return bestDataRead;
-	}
-
-	public void setBestDataRead(long bestDataRead) {
-		this.bestDataRead = bestDataRead;
-	}
-
-	public long getWorstDataRead() {
-		return worstDataRead;
-	}
-
-	public void setWorstDataRead(long worstDataRead) {
-		this.worstDataRead = worstDataRead;
-	}
-
-	public long getBestDataWrite() {
-		return bestDataWrite;
-	}
-
-	public void setBestDataWrite(long bestDataWrite) {
-		this.bestDataWrite = bestDataWrite;
-	}
-
-	public long getWorstDataWrite() {
-		return worstDataWrite;
-	}
-
-	public void setWorstDataWrite(int worstDataWrite) {
-		this.worstDataWrite = worstDataWrite;
-	}
-
-	public int getTimeInterval() {
-		return timeInterval;
-	}
-
-	public void setTimeInterval(int timeInterval) {
-		this.timeInterval = timeInterval;
-	}
-
-	public String getFunction() {
-		return function;
-	}
-
-	public void setFunction(String function) {
-		this.function = function;
-	}
-
-	public int getTimePurge() {
-		return timePurge;
-	}
-
-	public void setTimePurge(int timePurge) {
-		this.timePurge = timePurge;
-	}
-
-	public int getNumRecordGenerate() {
-		return numRecordGenerate;
-	}
-
-	public void setNumRecordGenerate(int numRecordGenerate) {
-		this.numRecordGenerate = numRecordGenerate;
 	}
 
 }
